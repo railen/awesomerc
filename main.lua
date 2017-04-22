@@ -214,7 +214,7 @@ globalkeys = utility.keymap(
    "M-C-m", function() awful.util.spawn("mysql-workbench") end,
    "M-C-t", function() awful.util.spawn("rapidsvn") end,
    "M-C-y", function() awful.util.spawn("keepassx") end,
-   "M-C-n", function() awful.util.spawn("thunar") end,
+   "M-C-u", function() awful.util.spawn("thunar") end,
    "M-S-Return", function() awful.util.spawn(software.terminal) end
 )
 
