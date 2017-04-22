@@ -11,12 +11,15 @@ local locations =
                 country = "Ukraine",
                 lat = 48.92, lon = 24.71,
                 gmt = 2 },
+     spb = { city = "St-Petersbug", country = "Russia",
+             lat = 59.57, lon = 30.19,
+             gmt = 3 },
      kiev = { city = "Kiev", country = "Ukraine",
               lat = 50.45, lon = 30.52,
               gmt = 2 }}
 
-private.user = { name = "unlogic",
-                 loc = locations.kiev }
+private.user = { name = "pvtr",
+                 loc = locations.spb }
 
 -- forecast.io API key is read from ./.forecast_io_api_key file
 private.weather = { api_key = utility.slurp(util.getdir("config") ..

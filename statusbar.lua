@@ -47,7 +47,8 @@ function statusbar.create(s, options)
       middle = w.unitybar,
       finish = l.fixed (
          map(add_margin,
-             { (is_v and
+             { w.weather, w.net, w.kbd, w.cpu, w.vol, w.mpd.widget, w.mem, w.battery, w.time })),
+--[[ (is_v and
                    l.fixed { l.margin { w.weather, margin_bottom = vista.scale(5) },
                              l.margin { w.net, margin_top = vista.scale(5) },
                              vertical = true } or
@@ -57,14 +58,18 @@ function statusbar.create(s, options)
                               l.margin { w.cpu, margin_top = vista.scale(5) },
                               vertical = true } or
                     l.flex { w.kbd, w.cpu, vertical = true }),
-                l.flex { w.vol,
+                (is_v and l.flex { w.vol,
                          w.mpd.widget,
-                         vertical = not is_v },
-                l.flex { w.mem,
-                         w.battery,
-                         vertical = not is_v },
+                         vertical = not is_v } or 
+                         l.fixed { l.margin { w.vol, margin_bottom = vista.scale(5), margin_top = vista.scale(5) },
+                         l.margin { w.mpd.widget, margin_bottom = vista.scale(5), margin_top = vista.scale(5) },
+                         vertical = false}),
+                (is_v and l.flex { w.mem, 
+			 w.battery, vertical = not is_v } or
+			l.midpoint { w.mem, w.battery, vertical = is_v }), 
                 l.midpoint { w.time, vertical = is_v },
                 vertical = is_v })),
+--]]
       vertical = is_v }
 
    bar.wibox:set_widget(layout)
@@ -78,12 +83,12 @@ function statusbar.initialize(bar, s, options)
 
    -- Menu
    widgets.menu_icon = awful.widget.button(
-      { image = iconic.lookup_icon("start-here-arch3", { preferred_size = "128x128",
+      { image = iconic.lookup_icon("start-here-awoken1", { preferred_size = "128x128",
                                                          icon_types = { "/start-here/" }}) })
    widgets.menu_icon:buttons(keymap("LMB", smartmenu.show))
 
    -- Clock
-   widgets.time = topjets.clock(options.width)
+   widgets.time = topjets.clock(options.width, is_vertical)
    widgets.time:buttons(
       keymap("LMB", function() awful.util.spawn(software.browser_cmd ..
                                                 "calendar.google.com", false) end,

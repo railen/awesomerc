@@ -81,7 +81,7 @@ end
 
 function battery.tooltip()
    local data = battery.data[1]
-   local text = "Status\t" .. data.status_text or data.status
+   local text = "Status\t" .. (data.status_text or "none")  or data.status
    if data.time_disc then
       text = string.format("%s\nLasting\t%s", text, os.date("!%X",os.time() - data.time_disc))
    end

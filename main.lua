@@ -31,21 +31,30 @@ conv = utility.conversion
 
 -- Autorun programs
 local autorunApps = {
-   "setxkbmap -layout 'us,ua,ru' -variant ',winkeys,winkeys' -option grp:menu_toggle -option compose:ralt",
-   'sleep 2; xkbset m; xmodmap ~/.xmodmap'
+   "setxkbmap -layout 'us,ru' -variant ',winkeys' -option grp:menu_toggle -option compose:ralt",
+--   'sleep 2; xkbset m; xmodmap ~/.xmodmap'
 }
 
 local runOnceApps = {
-   'hexchat',
+   "xscreensaver -nosplash",
+   "thunar --daemon",
+--   "feh --bg-scale ~/Firefox_wallpaper.png",
+   "firefox",
+   "gvim",
+   "~/.dropbox-dist/dropboxd",
+   "/usr/bin/urxvtd -q -f -o",
+   "qutim",
+   "qtcreator",
+--   'hexchat',
    'mpd',
-   'xrdb -merge ~/.Xresources',
-   'mpdscribble',
+--   'xrdb -merge ~/.Xresources',
+--   'mpdscribble',
    'kbdd',
-   '/usr/bin/avfsd -o intr -o sync_read ' .. userdir .. '/.avfs',
-   'megasync',
+--   '/usr/bin/avfsd -o intr -o sync_read ' .. userdir .. '/.avfs',
+--   'megasync',
    'xscreensaver -no-splash',
    'pulseaudio --start',
-   'redshift -l 60.8:10.7 -m vidmode -t 6500:5000',
+--   'redshift -l 60.8:10.7 -m vidmode -t 6500:5000',
 }
 
 utility.autorun(autorunApps, runOnceApps)
@@ -70,7 +79,7 @@ vista.setup {
      properties = { wallpaper = beautiful.wallpapers[2] } },
    { rule = {},
      properties = { wallpaper = beautiful.wallpapers[1],
-                    statusbar = { position = "right", width = vista.scale(58) } } } }
+                    statusbar = { position = "top", width = vista.scale(29) } } } }
 
 -- Wallpaper
 for s = 1, screen.count() do
@@ -160,7 +169,7 @@ globalkeys = utility.keymap(
    "M-Return", function ()
       quake.toggle({ terminal = software.terminal_quake,
                      name = "URxvt",
-                     height = 0.5,
+                     height = 0.8,
                      skip_taskbar = true,
                      ontop = true })
                end,
@@ -199,7 +208,14 @@ globalkeys = utility.keymap(
               end,
    "M-b", function()
       statusbar[mouse.screen].wibox.visible = not statusbar[mouse.screen].wibox.visible
-          end
+          end,
+   "M-C-l", function() awful.util.spawn("xscreensaver-command -lock") end,
+   "M-C-e", function() awful.util.spawn("eric") end,
+   "M-C-m", function() awful.util.spawn("mysql-workbench") end,
+   "M-C-t", function() awful.util.spawn("rapidsvn") end,
+   "M-C-y", function() awful.util.spawn("keepassx") end,
+   "M-C-n", function() awful.util.spawn("thunar") end,
+   "M-S-Return", function() awful.util.spawn(software.terminal) end
 )
 
 clientkeys = utility.keymap(

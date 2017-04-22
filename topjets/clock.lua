@@ -23,13 +23,13 @@ function clock.init()
    end)
 end
 
-function clock.new(width)
+function clock.new(width, is_vertical)
    local _date = wibox.widget.textbox()
    local _time = wibox.widget.textbox()
-   local _widget = l.exact { l.fixed { l.center { _date, horizontal = true },
-                                       l.center { _time, horizontal = true },
-                                       vertical = true },
-                             width = math.max(58, width) }
+   local _widget = l.exact { is_vertical and l.fixed { l.center { _date, horizontal = true },
+				l.center { _time, horizontal = true }, vertical = true } or 
+				l.fixed { _date, wibox.widget.textbox(" "), _time, vertical = false },
+                             width = math.max(is_vertical and 58 or 85, width) }
    _widget.t_date = _date
    _widget.t_time = _time
    return _widget
