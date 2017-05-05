@@ -110,7 +110,7 @@ do
    for s = 1, screen.count() do
       tags[s] = awful.tag(
          { " 𝟏 ", " 𝟐 ", " 𝟑 ", " 𝟒 ", " 𝟓 ", " 𝟔 "}, s,
-         {   f ,    f ,    f ,    f ,    f ,    f })
+         {   t ,    t ,    t ,    t ,    t ,    t })
    end
 end
 
