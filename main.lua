@@ -200,7 +200,7 @@ globalkeys = utility.keymap(
    "XF86AudioRaiseVolume", function() statusbar[mouse.screen].widgets.vol:inc() end,
    "XF86AudioMute", function() statusbar[mouse.screen].widgets.vol:toggle() end,
    rc.keys.lock, cmd("xscreensaver-command -lock"),
-   "M-l", minitray.toggle,
+   "M-K", minitray.toggle,
    "M-space", function()
       awful.layout.inc(layouts, 1)
       naughty.notify { title = "Layout changed", timeout = 2,
@@ -215,7 +215,8 @@ globalkeys = utility.keymap(
    "M-C-t", function() awful.util.spawn("rapidsvn") end,
    "M-C-y", function() awful.util.spawn("keepassx") end,
    "M-C-u", function() awful.util.spawn("thunar") end,
-   "M-S-Return", function() awful.util.spawn(software.terminal) end
+   "M-S-Return", function() awful.util.spawn(software.terminal) end,
+   "M-S-x", function() awful.client.swap.byidx(1) end
 )
 
 clientkeys = utility.keymap(
