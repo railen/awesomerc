@@ -87,9 +87,9 @@ for s = 1, screen.count() do
 end
 
 -- Default system software
-software = { terminal = "urxvt",
-             terminal_cmd = "urxvt -e ",
-             terminal_quake = "urxvt",
+software = { terminal = "urxvtc",
+             terminal_cmd = "urxvtc -e ",
+             terminal_quake = "urxvtc",
              editor = "ec",
              editor_cmd = "ec ",
              browser = "chromium",
